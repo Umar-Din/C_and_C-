@@ -1,3 +1,8 @@
-.vscode/
-array_operations/
-string_operations/
+# Ignore all files
+*
+
+# Don't ignore .cpp files
+!*.cpp
+
+# Don't ignore .gitignore itself
+!.gitignore
