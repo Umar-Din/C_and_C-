@@ -35,6 +35,55 @@ char* lower(char str[]){
     return string;
     
 }
+//inplace uper case to lower
+void inPlaceLower(char* str){
+    int i=0;
+    while(str[i] != '\0'){
+        if(str[i]>=65 && str[i]<=90){
+            str[i] = str[i]+32;
+        }
+        i++;
+    }
+}
+
+int Words(char str[]){
+    int i=0;
+    int words = 1;
+    while(str[i] !='\0'){
+        if(str[i-1]==' '){
+            words++;
+        }
+        i++;
+    }
+    return words;
+    
+}
+
+//capatilize case
+
+char* captilize(char str[]){
+    int i=0;
+    while(str[i] != '\0'){i++;}
+    char* string = (char *)malloc((i+1)*sizeof(str[0]));
+    int character = 0;
+    while(str[character] != '\0'){
+        if((str[character] >=97 && str[character] <= 122) && (str[character-1]==' ')){
+            string[character] = str[character]-32;
+        }else if((str[character]>=97 && str[character]<=122)){
+            string[character] = str[character];
+        }else if((str[character]>=65 && str[character]<=90)&&(str[character-1]!= ' ')){
+            string[character] = str[character]+32;
+        }else{
+            string[character] = str[character];
+        }
+        character++;
+    }
+    if(str[0]>=97 && str[0]<=122){
+        string[0] = str[0]-32;
+    }
+    string[character] = '\0';
+    return string;
+}
 
 void show(char *str){
     int i=0;
@@ -45,12 +94,17 @@ void show(char *str){
 
 
 int main(){
-    char stringone[] = "Hello World Welocme To World Of String";
+    char stringone[] = "hello woRLd welOcMe To WorlD of StriNg";
     cout<<stringone<<endl;
     cout<<length(stringone)<<endl;
-    char* stringtwo = lower(stringone);
+    // char* stringtwo = lower(stringone);
     // show(stringtwo);
-    cout<<stringtwo<<endl; 
+    // cout<<stringtwo<<endl; 
+    // inPlaceLower(stringone);
+    // cout<<stringone;
+    char* stringtwo = captilize(stringone);
+    cout<<stringtwo;
+    // cout<<Words(stringone);
 
     return 0;
 }
