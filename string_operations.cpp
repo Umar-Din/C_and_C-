@@ -92,9 +92,26 @@ void show(char *str){
     }
 }
 
+void sentance(char* str){
+    int i=0;
+    while(str[i] != '\0'){
+        if((str[i]>=65 && str[i]<=90)&&(str[i-2]=='.')){
+
+        }else if(str[i]>=65 && str[i]<=90){
+            str[i]+=32;
+        }else if((str[i]>=97 && str[i]<=122)&&(str[i-2]=='.')){
+            str[i]-=32;
+        }
+        i++;
+    }
+    if(str[0]>=97 && str[i]<=122){
+        str[0]-=32;
+    }
+}
+
 
 int main(){
-    char stringone[] = "hello woRLd welOcMe To WorlD of StriNg";
+    char stringone[] = "hello woRLd welOcMe To WorlD of StriNg. today we se. And thiIs";
     cout<<stringone<<endl;
     cout<<length(stringone)<<endl;
     // char* stringtwo = lower(stringone);
@@ -102,9 +119,11 @@ int main(){
     // cout<<stringtwo<<endl; 
     // inPlaceLower(stringone);
     // cout<<stringone;
-    char* stringtwo = captilize(stringone);
-    cout<<stringtwo;
+    // char* stringtwo = captilize(stringone);
+    // cout<<stringtwo;
     // cout<<Words(stringone);
+       sentance(stringone);
+       cout<<stringone;
 
     return 0;
 }
