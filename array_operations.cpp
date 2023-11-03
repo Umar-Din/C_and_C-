@@ -91,7 +91,7 @@ void add(struct Array* arr, int index, int value){
         return;
     }
     int i= arr->length-1;
-    for(i;i>index;i--){
+    for(i;i>=index;i--){
         arr->A[i+1]=arr->A[i]; 
     }
     arr->A[index] = value;
@@ -106,7 +106,7 @@ float sum(struct Array arr){
     }
     float sum = 0;
     for(int i=0; i<arr.length; i++){
-        sum+=i;
+        sum+=arr.A[i];
     }
     return sum;
 }
@@ -115,7 +115,7 @@ float sum(struct Array arr){
 
 int min(struct Array arr){
     if(length(arr)==false){
-        return;
+        return 0;
     }
     int min = arr.A[0];
     for(int i=1; i<arr.length;i++){
@@ -130,7 +130,7 @@ int min(struct Array arr){
 
 int max(struct Array arr){
     if(length(arr)==false){
-        return;
+        return 0;
     }
     int max = arr.A[0];
     for(int i=1; i<arr.length; i++){
@@ -145,10 +145,76 @@ int max(struct Array arr){
 
 float average(struct Array arr){
     if(length(arr)==false){
-        return;
+        return 0;
     }
     float avg = 0;
     avg = sum(arr)/arr.length;
+    return avg;
+}
+
+
+//get value by index
+int getvalue(struct Array arr, int index){
+    if(length(arr)==false){
+        return -1;
+    }else if (index >= arr.length && index<0){
+        return -1;
+    }
+    return arr.A[index];
+}
+
+//get index of value//linear search
+int getindex(struct Array arr, int value){
+    if(length(arr)==0){
+        return -1;
+    }for(int i=0; i<arr.length; i++){
+        if(arr.A[i]==value){
+            return i;
+        }
+    }
+    return -1;
+}
+
+//binary search to find the element 
+
+int search(struct Array arr, int value){
+    if(length(arr)==0){
+        return -1;
+    }
+    int l = 0;
+    int h = arr.length-1;
+    while(l<=h){
+        int mid = (l+h)/2;
+        if(arr.A[mid]==value){
+            return mid;
+        }else if(value>arr.A[mid]){
+            l = mid+1;
+        }else h = mid-1;
+    }
+    return -1;
+}
+
+// sort the array elements using selection sort
+//inplace sorting
+
+void sort(struct Array* arr){
+    if(arr->length==0) return;
+    //selection sort
+    int i,j,min;
+    i=j=0;
+    for(i;i<arr->length-1;i++){
+        min=i;
+        for(j=i+1;j<arr->length;j++){
+            if(arr->A[min]>arr->A[j]){
+                min=j;
+            }
+        }
+        if(arr->A[i]>arr->A[min]){
+            int temp = arr->A[i];
+            arr->A[i] = arr->A[min];
+            arr->A[min] = temp;
+        }
+    }
 }
 
 // main function
@@ -156,9 +222,19 @@ int main(){
     struct Array arr;
     create(&arr);
     // pop(&arr);
-    // append(&arr, 60);
+    // append(&arr, 15);
     // remove(&arr,0);
-    // add(&arr,1,100);
+    // add(&arr,1,5);
+    // cout<<getvalue(arr,0)<<" value by index"<<endl;
+    // cout<<average(arr)<<" average of values"<<endl;
+    // cout<<max(arr)<< " Maximum element of array"<<endl;
+    // cout<<min(arr)<<" minimum value of array"<<endl;
+    // cout<<sum(arr)<<" sum of array"<<endl;
+    // cout<<getindex(arr,500)<<" index of value"<<endl;
+    // cout<<search(arr,100)<<" binary search of element"<<endl;
+    // sort(&arr);
+
+
     display(arr);
 
     return 0;
