@@ -1,8 +1,20 @@
 # Ignore all files
+.vscode
+*.out
+*.exe
+*.o
+*.obj
+
+build/
+out/
+Debug/
+Release/
 *
 
 # Don't ignore .cpp files
 !*.cpp
+!c++
+!problems_and_solutions
 
 # Don't ignore .gitignore itself
 !.gitignore

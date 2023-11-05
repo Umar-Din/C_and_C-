@@ -15,7 +15,7 @@ struct  Array
 void swap(int* x, int* y){
     int temp = *x;
     *x = *y;
-    *y = *x;
+    *y = temp;
 }
 
 bool length(struct Array arr){
@@ -197,23 +197,85 @@ int search(struct Array arr, int value){
 // sort the array elements using selection sort
 //inplace sorting
 
-void sort(struct Array* arr){
+void sort(struct Array* arr, bool assending = true){
     if(arr->length==0) return;
     //selection sort
-    int i,j,min;
+    int i,j,selected;
     i=j=0;
     for(i;i<arr->length-1;i++){
-        min=i;
+        selected=i;
         for(j=i+1;j<arr->length;j++){
-            if(arr->A[min]>arr->A[j]){
-                min=j;
+            if(assending==true){
+                if(arr->A[selected]>arr->A[j]){
+                    selected=j;
+                }
+            }else{
+                if(arr->A[selected]<arr->A[j]){
+                    selected=j;
+                }
             }
         }
-        if(arr->A[i]>arr->A[min]){
-            int temp = arr->A[i];
-            arr->A[i] = arr->A[min];
-            arr->A[min] = temp;
+        if(assending==true){
+            if(arr->A[i]>arr->A[selected]){
+                int temp = arr->A[i];
+                arr->A[i] = arr->A[selected];
+                arr->A[selected] = temp;
+            }
+        }else{
+            if(arr->A[i]<arr->A[selected]){
+                int temp = arr->A[i];
+                arr->A[i] = arr->A[selected];
+                arr->A[selected] = temp;
+            }
         }
+    }
+}
+
+//sort elemnts by creating the new array
+
+struct Array sorted(struct Array arr, bool assending=true){
+    struct Array newarr;
+    newarr.A = (int *)malloc(arr.size*sizeof(arr.A[0]));
+    newarr.size = arr.size;
+    newarr.length=arr.length;
+    int i,j;
+    i=j=0;
+    for(i,j; i<arr.length;i++,j++){
+        newarr.A[j] = arr.A[i];
+    }
+    
+    sort(&newarr,assending);
+    return newarr;
+
+}
+//merge array//extend array by returning the third array
+
+struct Array extend(struct Array arr, struct Array arr2){
+    struct Array mergedArray;
+    mergedArray.length = arr.length+arr2.length;
+    mergedArray.size = arr.size+arr2.size;
+    mergedArray.A = (int *)malloc(mergedArray.size*sizeof(int));
+    int i=0;
+    int j = 0;
+    for(i;i<arr.length;i++){
+        mergedArray.A[i] = arr.A[i];
+    }
+    for(j;j<arr2.length;j++){
+        mergedArray.A[j] = arr2.A[j];
+    }
+    return mergedArray;
+}
+
+//reverse the array
+
+void reverse(struct Array* arr){
+    if(arr->length==0) return;
+    int i=0;
+    int j = arr->length-1;
+    while(i<j){
+        swap(&arr->A[i],&arr->A[j]);
+        i++;
+        j--;
     }
 }
 
@@ -232,10 +294,14 @@ int main(){
     // cout<<sum(arr)<<" sum of array"<<endl;
     // cout<<getindex(arr,500)<<" index of value"<<endl;
     // cout<<search(arr,100)<<" binary search of element"<<endl;
-    // sort(&arr);
+    // sort(&arr,false);
+    // struct Array newarr=sorted(arr);
+    reverse(&arr);
 
 
     display(arr);
+    // cout<<"new returned array is"<<endl;
+    // display(newarr);
 
     return 0;
 }
