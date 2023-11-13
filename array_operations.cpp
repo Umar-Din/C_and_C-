@@ -268,6 +268,8 @@ struct Array extend(struct Array arr, struct Array arr2){
 
 //reverse the array
 
+
+
 void reverse(struct Array* arr){
     if(arr->length==0) return;
     int i=0;

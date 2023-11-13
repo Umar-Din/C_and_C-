@@ -1,7 +1,7 @@
 /*
 find the single missing element in the array.
 
-it the array is of ist n natural numbers
+if the array is of ist n natural numbers
 */
 
 #include<iostream>
@@ -184,9 +184,6 @@ int main(){
     Array missing = missing_in_array(arr);
 
     missing.display();
-
-
-   
 
     return 0;
 }

@@ -15,6 +15,7 @@ Release/
 !*.cpp
 !c++
 !problems_and_solutions
+!matrix
 
 # Don't ignore .gitignore itself
 !.gitignore
