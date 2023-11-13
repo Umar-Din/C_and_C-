@@ -16,6 +16,7 @@ Release/
 !c++
 !problems_and_solutions
 !matrix
+!sparse_matrix.c
 
 # Don't ignore .gitignore itself
 !.gitignore
