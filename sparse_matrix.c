@@ -56,9 +56,9 @@ void add(struct SparseMatrix matrix1,struct SparseMatrix matrix2, struct SparseM
     matrix3->n = matrix1.n;
     matrix3->M = (struct SparseMatrix *)malloc((matrix1.elements+matrix2.elements)*sizeof(struct Element));
     int i,j,k=0;
-    for(i=1;i<matrix1.n;i++){
-        for(j=1;j<matrix1.m;j++){
-            
+    while(i<matrix1.m && j<matrix2.m){
+        if(matrix1.M->i<matrix2.M->i){
+            matrix3->M;
         }
     }
     
