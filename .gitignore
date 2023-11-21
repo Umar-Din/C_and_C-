@@ -9,7 +9,7 @@ build/
 out/
 Debug/
 Release/
-*
+
 
 # Don't ignore .cpp files
 !*.cpp

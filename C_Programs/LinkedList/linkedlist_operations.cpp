@@ -33,10 +33,13 @@ struct Node* create_node(int arr[], int size){
 }
 //display linkedlist elements
 void display(struct Node *node){
+    struct Node* head = node;
     
-    while(node->next!=NULL){
-        cout<<node->data<<endl;
-        node = node->next;
+    while(head!=NULL){
+        
+        cout<<head->data<<endl;
+        head= head->next;
+        
     }
 }
 
